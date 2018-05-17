@@ -6621,9 +6621,9 @@ react-transition-group@^2.2.1, react-transition-group@^2.3.1:
     loose-envify "^1.3.1"
     prop-types "^15.6.1"
 
-react-tweet@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/react-tweet/-/react-tweet-1.7.0.tgz#5cc345ac8a8abcdbbf1cd36242807dd12606c63a"
+react-tweet@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-tweet/-/react-tweet-1.7.1.tgz#06c10ffc23e31275d91d43bc6f927bf2cddab997"
   dependencies:
     babel "6.2.4"
     babel-cli "6.2.0"
