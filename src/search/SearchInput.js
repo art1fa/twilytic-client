@@ -6,8 +6,14 @@ import { Content } from '../styles/SearchInput';
 
 const styles = {
   label: {
-    //color: blue[500],
-  }
+    'width': '85%',
+    'white-space': 'nowrap',
+    'overflow': 'hidden',
+    'text-overflow': 'ellipsis',
+  },
+  labelShrink: {
+    'overflow': 'visible',
+  },
 };
 
 function SearchInput(props) {
@@ -26,7 +32,7 @@ function SearchInput(props) {
     <Content>
       <ChipInput
         autoFocus
-        //classes={{ label: props.classes.label }}
+        classes={{ label: props.classes.label, labelShrink: props.classes.labelShrink }}
         fullWidth
         label={props.label}
         newChipKeyCodes={[13, 32]}
@@ -39,4 +45,4 @@ function SearchInput(props) {
   );
 }
 
-export default SearchInput;
+export default withStyles(styles)(SearchInput);
