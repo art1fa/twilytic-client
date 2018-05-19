@@ -93,7 +93,7 @@ class TweetInteractionDistributionWidget extends Component {
   }
 
   handleMenuChange = (index) => {
-    this.setState({ selectedMenuItem: index }, () => {
+    this.setState({ selectedMenuItem: index, isLoading: true }, () => {
       switch(this.state.selectedMenuItem) {
         case 0: socket.emit('req_tweets_like_distrib', likeDistribGroups); break;
         case 1: socket.emit('req_tweets_retweet_distrib', retweetDistribGroups); break;

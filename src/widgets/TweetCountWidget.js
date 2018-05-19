@@ -119,6 +119,7 @@ class TweetCountWidget extends Component {
   handleMenuChange = (index) => {
     this.setState({
       selectedMenuItem: index,
+      isLoading: true,
     }, () => {
       switch (this.state.selectedMenuItem) {
         case 0:

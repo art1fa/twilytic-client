@@ -90,7 +90,7 @@ class UserDistributionWidget extends Component {
   }
 
   handleMenuChange = (index) => {
-    this.setState({ selectedMenuItem: index }, () => {
+    this.setState({ selectedMenuItem: index, isLoading: true }, () => {
       switch(this.state.selectedMenuItem) {
         case 0: socket.emit('req_users_follower_distrib', followerDistribGroups); break;
         case 1: socket.emit('req_users_tweet_count_distrib', tweetCountDistribGroups); break;

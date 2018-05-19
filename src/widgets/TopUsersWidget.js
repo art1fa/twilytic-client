@@ -135,7 +135,7 @@ class TopUsersWidget extends Component {
   }
 
   handleMenuChange = (index) => {
-    this.setState({ selectedMenuItem: index }, () => {
+    this.setState({ selectedMenuItem: index, isLoading: true }, () => {
       switch(this.state.selectedMenuItem) {
         case 0: socket.emit('req_users_follower', this.props.search); break;
         case 1: socket.emit('req_users_tweet_count', this.props.search); break;
