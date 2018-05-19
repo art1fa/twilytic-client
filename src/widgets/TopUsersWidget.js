@@ -22,38 +22,20 @@ import { simpleFormat } from '../utils/utils';
 let socket;
 
 function TopUsers(props) {
-  const getCount = (user) => {
-    let count;
-    switch(props.mode) {
-      case 0: count = simpleFormat(user.followers_count); break;
-      case 1: count = simpleFormat(user.tweets_count); break;
-    }
-    return count;
-  }
-
-  const getMode = () => {
-    let mode;
-    switch(props.mode) {
-      case 0: mode = '# Follower'; break;
-      case 1: mode = '# Tweets'; break;
-    }
-    return mode;
-  }
-
   return (
     <Table>
       <TableHead>
-        <TableCell padding='dense'>#</TableCell>
+        <TableCell padding="dense">#</TableCell>
         <TableCell>Nutzer</TableCell>
-        <TableCell>{getMode()}</TableCell>
+        <TableCell>{props.mode === 0 ? '# Follower' : '# Tweets'}</TableCell>
       </TableHead>
       <TableBody>
         {props.data.map((user, i) => (
           <TableRow hover key={i}>
-            <TableCell padding='dense'>
+            <TableCell padding="dense">
               {i + 1}
             </TableCell>
-            <TableCell padding='none'>
+            <TableCell padding="none">
               <ListItem>
                 <Avatar
                   alt="user_avatar"
@@ -67,7 +49,10 @@ function TopUsers(props) {
             </TableCell>
             <TableCell>
               <ListItemText
-                primary={getCount(user)}
+                primary={props.mode === 0 ?
+                  simpleFormat(user.followers_count) :
+                  simpleFormat(user.tweets_count)
+                }
               />
             </TableCell>
           </TableRow>

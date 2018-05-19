@@ -19,37 +19,11 @@ import { StyledPaper, Content } from '../styles/TopEntitiesWidget';
 let socket;
 
 function TopEntities(props) {
-
-  const numAbbrev = (num) => {
-    if (num > 999999) num = (num / 1000000).toFixed(1) + 'M'
-    if (num > 99999) num = (num / 1000).toFixed(0) + 'K'
-    if (num > 999) num = (num / 1000).toFixed(1) + 'K'
-    return num
-  }
-
-  const getCount = (user) => {
-    let count;
-    switch(props.mode) {
-      case 0: count = numAbbrev(user.followers_count); break;
-      case 1: count = numAbbrev(user.tweets_count); break;
-    }
-    return count;
-  }
-
-  const getMode = () => {
-    let mode;
-    switch(props.mode) {
-      case 0: mode = 'Hashtag'; break;
-      case 1: mode = 'Link'; break;
-    }
-    return mode;
-  }
-
   return (
     <Table>
       <TableHead>
         <TableCell>#</TableCell>
-        <TableCell>{getMode()}</TableCell>
+        <TableCell>{props.mode === 0 ? 'Hashtag' : 'Link-Domain'}</TableCell>
         <TableCell>Zahl</TableCell>
       </TableHead>
       <TableBody>
