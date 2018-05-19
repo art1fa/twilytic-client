@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 const Options = styled.div`
-    margin-top: 12px;
     display: block;
-    width: 100%;
+    padding: 0 15px;
 `;
 
 const Option = styled.div`

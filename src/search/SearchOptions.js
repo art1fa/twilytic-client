@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+
 import Switch from 'material-ui/Switch';
-import Typography from 'material-ui/Typography';
 
 import { Options, Option, OptionsText } from '../styles/SearchOptions';
 
 export default class SearchOptions extends Component {
-
   handleOptionsChange = (name) => (event, checked) => {
     this.props.onOptionsChange({ name, checked });
   };
@@ -13,7 +12,6 @@ export default class SearchOptions extends Component {
   render() {
     return (
       <Options>
-        <Typography variant="caption">Erweiterte Filter</Typography>
         <Option>
           <OptionsText>Retweets ausschließen</OptionsText>
           <Switch

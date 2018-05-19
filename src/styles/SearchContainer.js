@@ -4,33 +4,33 @@ import { withTheme } from 'material-ui/styles';
 
 
 const Content = styled.div`
-  padding: 10px 30px 30px 30px;
   max-width: 1000px;
   margin: auto;
 `;
 
-const StyledPaper = withTheme()(styled(Paper)`
+const Wrapper = withTheme()(styled.div`
   width: 100%;
-  max-width: 1060px;
+  max-width: 1000px;
   margin: auto;
   margin-bottom: 30px;
   padding: 15px 0;
-  transition: max-width 0.3s, background-color 1s;
   color: ${({ theme }) => theme.palette.text.secondary};
-
+  transition: max-width 0.3s, background-color 1s;
 
   &.active {
     background-color: ${({ theme }) => theme.palette.background.search};
-    max-width: 4000px;
-    box-shadow: none;
+    max-width: 100%;
   }
-
 `);
 
-const SearchMain = styled.div`
-  display: flex;
-  margin-top: 20px;
+const SearchBar = styled(Paper)`
+  padding: 20px;
+
+  &.active {
+    box-shadow: none;
+    background-color: inherit;
+  }
 `;
 
 
-export { Content, StyledPaper, SearchMain };
+export { Content, Wrapper, SearchBar };

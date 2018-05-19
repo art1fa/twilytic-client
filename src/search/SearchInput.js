@@ -1,8 +1,7 @@
 import React from 'react';
-import ChipInput from 'material-ui-chip-input';
-import { withStyles } from 'material-ui/styles';
 
-import { Content } from '../styles/SearchInput';
+import { withStyles } from 'material-ui/styles';
+import ChipInput from 'material-ui-chip-input';
 
 const styles = {
   label: {
@@ -18,7 +17,7 @@ const styles = {
 
 function SearchInput(props) {
 
-  const onBeforeAdd = (chip) => chip.length >= 2
+  const onBeforeAdd = (chip) => chip.length >= 2;
 
   const handleAdd = (chip) => {
     props.onInputChange([...props.value, chip.toLowerCase()]);
@@ -29,19 +28,17 @@ function SearchInput(props) {
   };
 
   return (
-    <Content>
-      <ChipInput
-        autoFocus
-        classes={{ label: props.classes.label, labelShrink: props.classes.labelShrink }}
-        fullWidth
-        label={props.label}
-        newChipKeyCodes={[13, 32]}
-        value={props.value}
-        onAdd={handleAdd}
-        onDelete={handleDelete}
-        onBeforeAdd={onBeforeAdd}
-      />
-    </Content>
+    <ChipInput
+      autoFocus
+      classes={{ label: props.classes.label, labelShrink: props.classes.labelShrink }}
+      fullWidth
+      label={props.label}
+      newChipKeyCodes={[13, 32]}
+      value={props.value}
+      onAdd={handleAdd}
+      onDelete={handleDelete}
+      onBeforeAdd={onBeforeAdd}
+    />
   );
 }
 
