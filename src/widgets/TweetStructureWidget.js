@@ -9,9 +9,11 @@ import withFade from '../components/withFade';
 
 import WidgetHead from './WidgetHead';
 import { Content, StyledPaper } from '../styles/TweetStructureWidget';
-import { pieChartOptions as chartOptions } from '../config/chartOptions';
+import { getPieChartOptions } from '../config/chartOptions';
 
 let socket;
+
+const chartOptions = getPieChartOptions();
 
 class TweetStructureWidget extends Component {
   constructor(props) {

@@ -9,14 +9,16 @@ import withFade from '../components/withFade';
 
 import WidgetHead from './WidgetHead';
 import { StyledPaper, AverageCount, Content } from '../styles/UserDistributionWidget';
-import { barChartOptions as options } from '../config/chartOptions';
+import { getBarChartOptions } from '../config/chartOptions';
 
 let socket;
+
+const chartOptions = getBarChartOptions();
+chartOptions.scales.yAxes[0].scaleLabel.labelString = 'Anzahl der Nutzer';
 
 const followerDistribGroups = [100, 1000, 5000, 10000, 50000, 100000, 500000];
 const tweetCountDistribGroups = [5, 10, 25, 50, 75, 100, 150, 200];
 
-options.scales.yAxes[0].scaleLabel.labelString = 'Anzahl der Nutzer';
 
 class UserDistributionWidget extends Component {
   constructor(props) {
@@ -41,7 +43,7 @@ class UserDistributionWidget extends Component {
     socket.on('users_follower_distrib', (follower) => {
       const labels = this.getLabels(followerDistribGroups);
 
-      options.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Follower';
+      chartOptions.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Follower';
       this.setState({
         data: follower.groups,
         dataAverage: follower.average,
@@ -53,7 +55,7 @@ class UserDistributionWidget extends Component {
     socket.on('users_tweet_count_distrib', (tweetCount) => {
       const labels = this.getLabels(tweetCountDistribGroups);
 
-      options.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Tweets';
+      chartOptions.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Tweets';
       this.setState({
         data: tweetCount.groups,
         dataAverage: tweetCount.average,
@@ -123,7 +125,7 @@ class UserDistributionWidget extends Component {
         <Content>
           {dataAverage && <AverageCount variant="display3" color="default">ø {dataAverage}</AverageCount>}
           <div>
-            <Bar data={chartData} options={options} />
+            <Bar data={chartData} options={chartOptions} />
           </div>
         </Content>
       </StyledPaper>

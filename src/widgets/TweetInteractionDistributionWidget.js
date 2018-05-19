@@ -9,11 +9,12 @@ import withFade from '../components/withFade';
 
 import WidgetHead from './WidgetHead';
 import { StyledPaper, AverageCount, Content } from '../styles/TweetInteractionDistributionWidget';
-import { barChartOptions as options } from '../config/chartOptions';
+import { getBarChartOptions } from '../config/chartOptions';
 
 let socket;
 
-options.scales.yAxes[0].scaleLabel.labelString = 'Anzahl der Tweets';
+const chartOptions = getBarChartOptions();
+chartOptions.scales.yAxes[0].scaleLabel.labelString = 'Anzahl der Tweets';
 
 const likeDistribGroups = [5, 20, 50, 100, 200, 500, 1000];
 const retweetDistribGroups = [5, 20, 50, 100, 200, 500, 1000];
@@ -42,7 +43,7 @@ class TweetInteractionDistributionWidget extends Component {
       console.log(favorites)
       const labels = this.getLabels(likeDistribGroups);
 
-      options.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Likes';
+      chartOptions.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Likes';
 
       this.setState({
         data: favorites.groups,
@@ -55,7 +56,7 @@ class TweetInteractionDistributionWidget extends Component {
     socket.on('tweets_retweet_distrib', (retweets) => {
       const labels = this.getLabels(retweetDistribGroups);
 
-      options.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Retweets';
+      chartOptions.scales.xAxes[0].scaleLabel.labelString = 'Anzahl der Retweets';
       
       this.setState({
         data: retweets.groups,
@@ -128,7 +129,7 @@ class TweetInteractionDistributionWidget extends Component {
         <Content>
           {dataAverage && <AverageCount variant="display3" color="default">ø {dataAverage}</AverageCount>}
           <div>
-            <Bar data={chartData} options={options} />
+            <Bar data={chartData} options={chartOptions} />
           </div>
         </Content>
       </StyledPaper>
