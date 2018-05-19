@@ -11,6 +11,8 @@ import WidgetHead from './WidgetHead';
 import { StyledPaper, AverageCount, Content } from '../styles/TweetInteractionDistributionWidget';
 import { getBarChartOptions } from '../config/chartOptions';
 
+import { simpleFormat } from '../utils/utils';
+
 let socket;
 
 const chartOptions = getBarChartOptions();
@@ -81,13 +83,14 @@ class TweetInteractionDistributionWidget extends Component {
   }
 
   getLabels = (groups) => {
-    const labels = Array(groups.length + 1);
-    for (let i = 0; i < groups.length; i += 1) {
-      if (i === 0) labels[i] = `< ${groups[i]}`;
-      if (i === groups.length - 1) {
-        labels[i + 1] = `> ${groups[i]}`;
+    const prettyGroups = groups.map((i) => simpleFormat(i));
+    const labels = Array(prettyGroups.length + 1);
+    for (let i = 0; i < prettyGroups.length; i += 1) {
+      if (i === 0) labels[i] = `< ${prettyGroups[i]}`;
+      if (i === prettyGroups.length - 1) {
+        labels[i + 1] = `> ${prettyGroups[i]}`;
       } else {
-        labels[i + 1] = `${groups[i]} - ${groups[i + 1]}`;
+        labels[i + 1] = `${prettyGroups[i]} - ${prettyGroups[i + 1]}`;
       }
     }
     return labels;
@@ -127,7 +130,7 @@ class TweetInteractionDistributionWidget extends Component {
           selectedMenuItem={this.state.selectedMenuItem}
         />
         <Content>
-          {dataAverage && <AverageCount variant="display3" color="default">ø {dataAverage}</AverageCount>}
+          {dataAverage && <AverageCount variant="display3" color="default">ø {simpleFormat(dataAverage)}</AverageCount>}
           <div>
             <Bar data={chartData} options={chartOptions} />
           </div>

@@ -17,22 +17,16 @@ import withFade from '../components/withFade';
 import WidgetHead from './WidgetHead';
 import { StyledPaper, Content } from '../styles/TopUsersWidget';
 
+import { simpleFormat } from '../utils/utils';
+
 let socket;
 
 function TopUsers(props) {
-
-  const numAbbrev = (num) => {
-    if (num > 999999) num = (num / 1000000).toFixed(1) + 'M'
-    if (num > 99999) num = (num / 1000).toFixed(0) + 'K'
-    if (num > 999) num = (num / 1000).toFixed(1) + 'K'
-    return num
-  }
-
   const getCount = (user) => {
     let count;
     switch(props.mode) {
-      case 0: count = numAbbrev(user.followers_count); break;
-      case 1: count = numAbbrev(user.tweets_count); break;
+      case 0: count = simpleFormat(user.followers_count); break;
+      case 1: count = simpleFormat(user.tweets_count); break;
     }
     return count;
   }
