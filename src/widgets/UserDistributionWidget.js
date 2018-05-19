@@ -8,7 +8,7 @@ import { Bar } from 'react-chartjs-2';
 import withFade from '../components/withFade';
 
 import WidgetHead from './WidgetHead';
-import { StyledPaper, Content } from '../styles/UserDistributionWidget';
+import { StyledPaper, AverageCount, Content } from '../styles/UserDistributionWidget';
 import { barChartOptions as options } from '../config/chartOptions';
 
 let socket;
@@ -26,7 +26,7 @@ class UserDistributionWidget extends Component {
       selectedMenuItem: 0,
       isLoading: true,
       data: [],
-      dataAverage: 0,
+      dataAverage: null,
       labels: [],
     };
     socket = this.props.socket;
@@ -121,7 +121,10 @@ class UserDistributionWidget extends Component {
           selectedMenuItem={this.state.selectedMenuItem}
         />
         <Content>
-          <Bar data={chartData} options={options} />
+          {dataAverage && <AverageCount variant="display3" color="default">ø {dataAverage}</AverageCount>}
+          <div>
+            <Bar data={chartData} options={options} />
+          </div>
         </Content>
       </StyledPaper>
     );

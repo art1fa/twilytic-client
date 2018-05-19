@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Paper from 'material-ui/Paper'
+import Typography from 'material-ui/Typography';
 
 
 const StyledPaper = styled(Paper)`
@@ -27,9 +28,22 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
-const Content = styled.div`
-  padding: 20px;
-  flex-grow: 1;
+const AverageCount = styled(Typography)`
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  opacity: 0.5;
 `;
 
-export { StyledPaper, Content };
+const Content = styled.div`
+  position: relative;
+  display: flex;
+  padding: 20px;
+  flex-grow: 1;
+
+  & > div {
+    flex-grow: 1;
+  }
+  `;
+
+export { StyledPaper, AverageCount, Content };
