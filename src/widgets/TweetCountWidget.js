@@ -101,8 +101,9 @@ class TweetCountWidget extends Component {
     for (let i = 0; i < 30; i += 1) {
       labels[30 - i - 1] = moment()
         .subtract(i, 'days')
-        .format('DD.MM.YYYY');
+        .format('DD.MM');
     }
+    labels[29] = 'Heute';
     this.setState({ labels });
   }
 
