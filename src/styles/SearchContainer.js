@@ -10,12 +10,10 @@ const Content = styled.div`
 
 const Wrapper = withTheme()(styled.div`
   width: 100%;
-  max-width: 1000px;
-  margin: auto;
   margin-bottom: 30px;
   padding: 15px 0;
   color: ${({ theme }) => theme.palette.text.secondary};
-  transition: max-width 0.3s, background-color 1s;
+  transition: background-color 1s;
 
   &.active {
     background-color: ${({ theme }) => theme.palette.background.search};
