@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Tweet from 'react-tweet';
+
 import { Content, StyledPaper } from '../styles/TweetStreamWidget';
 
 import withFade from '../components/withFade';
+import LoadMore from '../components/LoadMore';
 
 
 import WidgetHead from './WidgetHead';
@@ -16,6 +18,7 @@ class TweetStreamWidget extends Component {
     super(props);
     this.state = {
       selectedMenuItem: 0,
+      pageNumber: 1,
       tweets: [],
       isLoading: true,
     };
@@ -23,13 +26,19 @@ class TweetStreamWidget extends Component {
   }
 
   componentDidMount() {
-    socket.emit('req_stream', this.state.selectedMenuItem);
+    this.requestData();
 
     socket.on('stream_recent', (data) => {
       console.log('receiving recent')
+      let tweets;
+      if (this.state.pageNumber > 1) {
+        tweets = [...this.state.tweets, ...data];
+      } else {
+        tweets = data;
+      }
       this.setState({
+        tweets,
         searchChange: false,
-        tweets: data,
         isLoading: false,
       });
     });
@@ -48,27 +57,45 @@ class TweetStreamWidget extends Component {
     }
     if (this.state.searchChange && nextProps.show && !nextProps.loading) {
       console.log('req_stream')
-      socket.emit('req_stream', this.state.selectedMenuItem);
-      this.setState({ isLoading: true, searchChange: false });
+      this.setState({ pageNumber: 1, isLoading: true, searchChange: false }, () => {
+        this.requestData();
+      });
     }
   }
 
-  handleMenuChange = (index) => {
-    this.setState({ selectedMenuItem: index, isLoading: true }, () => {
-      socket.emit('req_stream', this.state.selectedMenuItem);
-      console.log('req_stream from handlemenuchange')
+  requestData = () => {
+    socket.emit('req_stream', {
+      mode: this.state.selectedMenuItem,
+      pageNumber: this.state.pageNumber,
     });
   }
 
+  handleMenuChange = (index) => {
+    this.setState({
+      selectedMenuItem: index,
+      pageNumber: 1,
+      isLoading: true,
+    }, () => {
+      this.requestData();
+    });
+  }
+
+  nextPage = () => {
+    this.setState((prevState) => ({
+      pageNumber: prevState.pageNumber + 1,
+    }), () => this.requestData());
+  }
+
   render() {
+    const { isLoading, selectedMenuItem } = this.state;
     return (
       <StyledPaper>
         <WidgetHead
           title="Tweets"
           options={['Neueste', 'Meist geliked', 'Meist geretweeted']}
-          loading={this.state.isLoading}
+          loading={isLoading}
           onMenuChange={this.handleMenuChange}
-          selectedMenuItem={this.state.selectedMenuItem}
+          selectedMenuItem={selectedMenuItem}
         />
         <Content>
           {this.state.tweets.map((tweet) => (
@@ -77,6 +104,7 @@ class TweetStreamWidget extends Component {
               key={tweet.id}
               linkProps={{ target: '_blank' }}
             />)) }
+          {!isLoading && <LoadMore onClick={this.nextPage} entities="Tweets" /> }
         </Content>
       </StyledPaper>
     );
