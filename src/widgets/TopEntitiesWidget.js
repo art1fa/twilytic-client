@@ -64,11 +64,11 @@ class TopEntitiesWidget extends Component {
 
   componentDidMount() {
     switch(this.state.selectedMenuItem) {
-      case 0: socket.emit('req_top_entities_hastags', this.props.search); break;
+      case 0: socket.emit('req_top_entities_hashtags', this.props.search); break;
       case 1: socket.emit('req_top_entities_urls', this.props.search); break;
     }
 
-    socket.on('top_entities_hastags', (data) => {
+    socket.on('top_entities_hashtags', (data) => {
       if (data !== null) {
         this.setState({ data });
       }
@@ -90,7 +90,7 @@ class TopEntitiesWidget extends Component {
 
     if (this.state.searchChange && nextProps.show && !nextProps.loading) {
       switch(this.state.selectedMenuItem) {
-        case 0: socket.emit('req_top_entities_hastags', nextProps.search); break;
+        case 0: socket.emit('req_top_entities_hashtags', nextProps.search); break;
         case 1: socket.emit('req_top_entities_urls', nextProps.search); break;
       }
       this.setState({ isLoading: true, searchChange: false });
@@ -100,7 +100,7 @@ class TopEntitiesWidget extends Component {
   handleMenuChange = (index) => {
     this.setState({ selectedMenuItem: index, isLoading: true }, () => {
       switch(this.state.selectedMenuItem) {
-        case 0: socket.emit('req_top_entities_hastags', this.props.search); break;
+        case 0: socket.emit('req_top_entities_hashtags', this.props.search); break;
         case 1: socket.emit('req_top_entities_urls', this.props.search); break;
       }
     });
