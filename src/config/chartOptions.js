@@ -1,3 +1,21 @@
+import { defaults } from 'react-chartjs-2';
+import _ from 'lodash';
+
+function setChartDefaults(theme) {
+  _.merge(defaults, {
+    global: {
+      defaultFontColor: theme.palette.text.secondary,
+      defaultFontFamily: theme.typography.fontFamily,
+      maintainAspectRatio: false,
+      title: {
+        fontSize: 14,
+        fontStyle: 'normal',
+      },
+    },
+  });
+}
+
+
 function getBarChartOptions() {
   return ({
     legend: {
@@ -26,8 +44,6 @@ function getBarChartOptions() {
         },
       }],
     },
-    responsive: true,
-    maintainAspectRatio: false,
   });
 }
 
@@ -37,10 +53,8 @@ function getPieChartOptions() {
       display: true,
       position: 'bottom',
     },
-    responsive: true,
-    maintainAspectRatio: false,
     //cutoutPercentage: 40,
   });
 }
 
-export { getBarChartOptions, getPieChartOptions };
+export { setChartDefaults, getBarChartOptions, getPieChartOptions };

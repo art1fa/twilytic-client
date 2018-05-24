@@ -25,6 +25,8 @@ import Footer from './components/Footer';
 
 import { AppWrapper, Body, SectionHead, Grid } from './styles/App';
 
+import { setChartDefaults } from './config/chartOptions';
+
 const socket = io('http://localhost:3001');
 
 class App extends Component {
@@ -47,6 +49,7 @@ class App extends Component {
       isLoading: false,
       isDarkTheme: false,
     };
+    setChartDefaults(this.setTheme());
   }
 
   componentDidMount() {
