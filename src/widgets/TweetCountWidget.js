@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import { blue } from 'material-ui/colors';
-import { withTheme } from 'material-ui/styles';
 
 import moment from 'moment-timezone';
 
-import { Bar, defaults } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import withFade from '../components/withFade';
 
@@ -33,7 +32,6 @@ class TweetCountWidget extends Component {
       isLoading: true,
     };
     socket = this.props.socket;
-    // defaults.global.defaultFontColor = this.props.theme.palette.text.secondary;
   }
 
   componentDidMount() {
