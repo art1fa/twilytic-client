@@ -37,22 +37,22 @@ class TweetStructureWidget extends Component {
     }
 
     socket.on('tweet_structure_tweettype', (data) => {
-      chartOptions.title = { text: "Anteil der Tweets, die Reply oder Retweets sind", display: true };
+      chartOptions.title = { text: 'Anteil der Tweets, die Replys oder Retweets sind', display: true };
 
-      this.setState({ 
-        data: [data.total - data.retweets - data.replys, data.retweets, data.replys],
+      this.setState({
+        data: [data.tweet, data.retweet, data.reply],
         labels: ['Tweet', 'Retweet', 'Reply'],
-        isLoading: false 
+        isLoading: false,
       });
     });
 
     socket.on('tweet_structure_media', (data) => {
-      chartOptions.title = {text: "Anteil der Tweets mit/ohne Medieninhalt", display: true};
+      chartOptions.title = { text: 'Anteil der Tweets mit/ohne Medieninhalte', display: true };
 
-      this.setState({ 
-        data: [data.total - data.photo - data.video - data.gif, data.photo, data.video, data.gif],
-        labels: ['Text', 'Foto', 'Video', 'GIF'],
-        isLoading: false 
+      this.setState({
+        data: [data.text, data.photo, data.video_or_gif],
+        labels: ['Text', 'Bild', 'Video / GIF'],
+        isLoading: false,
       });
     });
   }
