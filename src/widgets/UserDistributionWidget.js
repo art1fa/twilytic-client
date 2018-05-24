@@ -18,7 +18,7 @@ let socket;
 const chartOptions = getBarChartOptions();
 chartOptions.scales.yAxes[0].scaleLabel.labelString = 'Anzahl der Nutzer';
 
-const followerDistribGroups = [100, 1000, 5000, 10000, 50000, 100000, 500000];
+const followerDistribGroups = [100, 1000, 5000, 10000, 25000, 50000, 100000];
 const tweetCountDistribGroups = [5, 10, 25, 50, 75, 100, 150, 200];
 
 
