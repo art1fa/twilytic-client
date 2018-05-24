@@ -33,7 +33,7 @@ const Content = styled.div`
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const Tags = styled.div`
