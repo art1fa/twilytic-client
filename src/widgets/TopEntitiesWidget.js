@@ -7,8 +7,6 @@ import Table, {
   TableCell,
   TableHead,
   TableRow,
-  TableFooter,
-  TablePagination,
 } from 'material-ui/Table';
 
 import withFade from '../components/withFade';
@@ -24,7 +22,7 @@ function TopEntities(props) {
       <TableHead>
         <TableCell>#</TableCell>
         <TableCell>{props.mode === 0 ? 'Hashtag' : 'Link-Domain'}</TableCell>
-        <TableCell>Zahl</TableCell>
+        <TableCell>Anzahl</TableCell>
       </TableHead>
       <TableBody>
         {props.data.map((entity, i) => (
@@ -33,7 +31,7 @@ function TopEntities(props) {
               {i + 1}
             </TableCell>
             <TableCell>
-              <Typography>{entity.group}</Typography>
+              <Typography style={{ cursor: 'pointer' }}>{props.mode === 0 ? `#${entity.group}` : entity.group}</Typography>
             </TableCell>
             <TableCell>
               <Typography>{entity.reduction}</Typography>
@@ -41,10 +39,6 @@ function TopEntities(props) {
           </TableRow>
         ))}
       </TableBody>
-      {/* <TableFooter>
-        <TableRow>
-        </TableRow>
-      </TableFooter> */}
     </Table>
   );
 }
