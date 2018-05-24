@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles/';
 
 import withFade from '../components/withFade';
@@ -35,9 +34,16 @@ const Body = styled.div`
   padding-bottom: 250px;
 `;
 
-const SectionHeadline = withFade()(styled(Typography)`
-  margin-left: 20px !important;
-  margin-top: 80px !important;
+const SectionHead = withFade()(styled.div`
+  margin-left: 20px;
+  margin-top: 50px;
+
+  ${media.medium`
+    margin-left: 60px;
+  `}
+  ${media.large`
+    margin-left: 80px;
+  `}
 
   &.fade-enter {
     opacity: 0;
@@ -74,12 +80,12 @@ const Grid = styled.section`
 
     ${media.medium`
       grid-template-columns: repeat(2, minmax(450px, 600px));
-      margin: 30px;
+      margin: 30px 60px;
     `}
     ${media.large`
       grid-template-columns: repeat(3, minmax(500px, 600px));
-      margin: 30px;
+      margin: 30px 80px;
     `}
 `;
 
-export { AppWrapper, Body, SectionHeadline, Grid };
+export { AppWrapper, Body, SectionHead, Grid };

@@ -23,7 +23,7 @@ import TweetInteractionDistributionWidget from './widgets/TweetInteractionDistri
 
 import Footer from './components/Footer';
 
-import { AppWrapper, Body, SectionHeadline, Grid } from './styles/App';
+import { AppWrapper, Body, SectionHead, Grid } from './styles/App';
 
 const socket = io('http://localhost:3001');
 
@@ -109,7 +109,10 @@ class App extends Component {
             />
             {isLoading && <CircularProgress size={50} thickness={2} style={{ position: 'absolute', margin: '0 auto', left: '0', right: '0' }} />}
             {nothingFound && <Typography variant="display1" align="center">Sorry, wir haben nichts gefunden 😢</Typography>}
-            <SectionHeadline variant="display2" show={show}>Auswertung der Tweets</SectionHeadline>
+            <SectionHead show={show}>
+              <Typography variant="display1">Auswertung der Tweets</Typography>
+              <Typography color="textSecondary" noWrap>{resultCount.tweets} Tweets gefunden</Typography>
+            </SectionHead>
             <Grid>
               <TweetStreamWidget search={search} socket={socket} show={show} loading={isLoading} />
               <TweetCountWidget search={search} socket={socket} show={show} loading={isLoading} />
@@ -118,7 +121,10 @@ class App extends Component {
               <TweetInteractionDistributionWidget search={search} socket={socket} show={show} loading={isLoading} />
             </Grid>
 
-            <SectionHeadline variant="display2" show={show} delay="1.75s">Auswertung der Nutzer</SectionHeadline>
+            <SectionHead show={show}>
+              <Typography variant="display1">Auswertung der Nutzer</Typography>
+              <Typography color="textSecondary">{resultCount.users} gefunden</Typography>
+            </SectionHead>
             <Grid>
               <TopUsersWidget search={search} socket={socket} show={show} loading={isLoading} />
               <UserStructureWidget
