@@ -119,7 +119,7 @@ class UserDistributionWidget extends Component {
     return (
       <StyledPaper>
         <WidgetHead
-          title="Nutzer Verteilung"
+          title="Nutzereinflussverteilung"
           options={['Nach Follower', 'Nach Anzahl der Tweets']}
           loading={this.state.isLoading}
           onMenuChange={this.handleMenuChange}

@@ -94,7 +94,7 @@ class UserStructureWidget extends Component {
   render() {
     return (
       <StyledPaper>
-        <WidgetHead title="Nutzerstruktur" loading={this.state.isLoading} />
+        <WidgetHead title="Nutzerklassifikation" loading={this.state.isLoading} />
         <Content>
           <TagCloud
             tags={this.state.data}
