@@ -14,7 +14,7 @@ const StyledPaper = styled(Paper)`
 
   &.fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 1s 2.25s;
+    transition: opacity 1s 2.5s;
   }
 
   &.fade-exit {

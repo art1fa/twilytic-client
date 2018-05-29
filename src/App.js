@@ -130,6 +130,7 @@ class App extends Component {
             </SectionHead>
             <Grid>
               <TopUsersWidget search={search} socket={socket} show={show} loading={isLoading} />
+              <UserDistributionWidget search={search} socket={socket} show={show} loading={isLoading} />
               <UserStructureWidget
                 search={search}
                 socket={socket}
@@ -137,7 +138,6 @@ class App extends Component {
                 loading={isLoading}
                 onTagClick={this.handleUsergroupChange}
               />
-              <UserDistributionWidget search={search} socket={socket} show={show} loading={isLoading} />
             </Grid>
           </Body>
           <Footer />
