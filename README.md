@@ -10,3 +10,12 @@ yarn install
 yarn start
 ```
 
+## Screenshots
+
+![twilytic search](screenshot_1.png)
+
+![twilytic widgets](screenshot_2.png)
+
+## About
+
+Twilytic is the outcome of my Master's thesis at the Technical University of Munich. The thesis was issued and supervised by Prof. Dr. Jürgen Pfeffer from the chair of Computational Social Science and Big Data. Thank you so much!
