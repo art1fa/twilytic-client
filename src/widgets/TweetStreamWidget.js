@@ -91,7 +91,7 @@ class TweetStreamWidget extends Component {
     return (
       <StyledPaper>
         <WidgetHead
-          title="Tweets"
+          title="Tweetstream"
           options={['Neueste', 'Meist geliked', 'Meist geretweeted']}
           loading={isLoading}
           onMenuChange={this.handleMenuChange}
