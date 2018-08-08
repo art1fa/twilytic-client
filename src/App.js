@@ -27,7 +27,7 @@ import { AppWrapper, Body, SectionHead, Grid } from './styles/App';
 
 import { setChartDefaults } from './config/chartOptions';
 
-const socket = io('http://localhost:3001');
+const socket = io(process.env.REACT_APP_API_URL);
 
 class App extends Component {
   constructor(props) {

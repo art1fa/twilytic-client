@@ -7,7 +7,7 @@ import { Wrapper } from '../styles/Logo';
 export default function Logo(props) {
   return (
     <Wrapper>
-      <a href="http://localhost:3000">
+      <a href={process.env.REACT_APP_API_URL}>
         <img src={logo} alt="logo" style={{ maxWidth: '80%' }} />
       </a>
     </Wrapper>
